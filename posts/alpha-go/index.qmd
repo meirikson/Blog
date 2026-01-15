@@ -1,0 +1,9 @@
+---
+title: "AlphaGo"
+author: "Michael Eirikson"
+date: "2026-01-15"
+categories: [AI, ML, Reinforcement Learning, Go]
+format: html
+---
+
+## TEST
