@@ -1,7 +1,7 @@
 ---
 title: "The Go AI that Defeated Humanity"
 author: "Michael Eirikson"
-date: "2026-01-15"
+date: "2026-01-17"
 categories: [AI, ML, Reinforcement Learning, Go]
 format: html
 ---
