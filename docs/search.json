@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "AlphaGo_Blog",
+    "title": "A “VERY GOOD” Data Science Blog",
     "section": "",
-    "text": "AlphaGo\n\n\n\nAI\n\nML\n\nReinforcement Learning\n\nGo\n\n\n\n\n\n\n\n\n\nJan 15, 2026\n\n\nMichael Eirikson\n\n\n\n\n\nNo matching items"
+    "text": "The Go AI that Defeated Humanity\n\n\n\nAI\n\nML\n\nReinforcement Learning\n\nGo\n\n\n\n\n\n\n\n\n\nJan 15, 2026\n\n\nMichael Eirikson\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,54 @@
     "title": "About",
     "section": "",
     "text": "This blog is written by Michael Eirikson. The content is mainly topics in data science, programming and statistics."
+  },
+  {
+    "objectID": "posts/alpha-go/index.html",
+    "href": "posts/alpha-go/index.html",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "",
+    "text": "In 2016 a team from Google DeepMind revealed AlphaGo, the most powerful Go AI ever created. Initially top Go players took it for granted they could be this new AI. Less than a year before the release of AlphaGo there were experts who though AI beating top Go players was at least a decade away if not completely impossible.\nTo prove the strength of AlphaGo, the team from DeepMind challenged a top Go player named Lee Sedol to a best of five match. Lee Sedol had been the number one raked Go player worldwide from 2007 to 2011 and remained a top level pro player until he retired in 2019.\nIt didn’t take long for Sedol to realise how strong AlphaGo really was. AlphaGo won the first three games. After losing the third game Sedol apologised for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol did manage to win game four but then lost the final round. Sedol’s loss completely stunned the Go community, who universally assumed Sedol would win easily.\n\n\n\nLee Sedol playing Against AlphaGo"
+  },
+  {
+    "objectID": "posts/alpha-go/index.html#this-history",
+    "href": "posts/alpha-go/index.html#this-history",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "",
+    "text": "In 2016 a team from Google DeepMind revealed AlphaGo, an AI capable of beating the worlds best Go players. Less than a year earlier experts were saying this was at least a decade away if not completely impossible. When the AI was shown for the first time, Go players around the world were shocked at the strength of the AI, while AI developers and enthusiasts were fascinated by the techniques used to reach this achievement.\nGo is a game played between two players on a 19x19 grid. The players take turns placing one stone with the goal of claiming the most territory. The rules set is simple but lead to an extremely complex and intricate game.\nBefore AlphaGo the best Go AI’s were based on a technique called Monte Carlo Tree Search (MCTS). In MCTS on each turn the AI performs thousands of random playouts. In a playout the AI randomly simulates the rest of the game. While doing these playouts the AI keeps track of the number of wins and losses that proceed from every position that it explores. While simulating the playout it balances a trade off between exploring lots of possible different moves and exploiting moves that are performing well. With a sufficient number of playouts this type of AI was able to play at a professional level on smaller 9x9 boards and play at a strong amateur level on full 19x19 boards.\nIn 2016 the Google DeepMind team challenged a top Go player named Lee Sedol to a best of five match. Lee Sedol was the number one raked Go player worldwide from 2007 to 2011 and remained a top level pro player till he retired in 2019. After the first three games AlphaGo was ahead 3-0. After losing the third game Sedol apologised for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol won game four then lost the final round. Sedol’s loss stunned the Go community, where an easy win had been expected.\nAlphaGo uses a version of MCTS. In AlphaGo, instead of performing a playout all the way till the game ends, it uses a model to predicted if a given position is good or bad and records this value in place of the result of the game. It also uses this model to chose the best moves to explore.\nThe model works by first taking the current position and recent history. Then this data is fed though 40 processing layers. These layers work together to process the board position using a technique reminiscent of how a visual cortex processes information. In each layer patterns are detected and a representation of those patterns is given as output. In this way each layer builds on the patterns of the previous layer. Initial layers might detect and process simples patters like two adjacent stone while later layers would process extremely complex arrangements of stones. After these 40 layers a bit more processing is done to produce two predictions: how good or bad the position is, and a list of the best possible moves to further explore.\nThis was the technique the allowed AI to finally beat the worlds best Go players."
+  },
+  {
+    "objectID": "posts/alpha-go/index.html#the-history",
+    "href": "posts/alpha-go/index.html#the-history",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "",
+    "text": "In 2016 a team from Google DeepMind revealed AlphaGo, an AI capable of beating the worlds best Go players. Less than a year earlier experts were saying this was at least a decade away if not completely impossible. When the AI was shown for the first time, Go players around the world were shocked at the strength of the AI, while AI developers and enthusiasts were fascinated by the techniques used to reach this achievement.\nIn 2016 the Google DeepMind team challenged a top Go player named Lee Sedol to a best of five match. Lee Sedol was the number one raked Go player worldwide from 2007 to 2011 and remained a top level pro player till he retired in 2019. After the first three games AlphaGo was ahead 3-0. After losing the third game Sedol apologised for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol won game four then lost the final round. Sedol’s loss stunned the Go community, where an easy win had been expected."
+  },
+  {
+    "objectID": "posts/alpha-go/index.html#what-is-go-anyways",
+    "href": "posts/alpha-go/index.html#what-is-go-anyways",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "What is Go Anyways?",
+    "text": "What is Go Anyways?\nGo is a game played between two players on a 19x19 grid. The players take turns placing one stone with the goal of claiming the most territory. The rules set is simple but lead to an extremely complex and intricate game.\n\n\n\nA typical go game close to the end"
+  },
+  {
+    "objectID": "posts/alpha-go/index.html#before-alphago",
+    "href": "posts/alpha-go/index.html#before-alphago",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "Before AlphaGo",
+    "text": "Before AlphaGo\nBefore AlphaGo the best Go AI’s were based on a technique called Monte Carlo Tree Search (MCTS).\nIn MCTS on each turn the AI performs thousands of random playouts. In a playout the AI starts with the current position and randomly simulates the rest of the game. While doing these playouts the AI does some simple bookkeeping to track of the number of wins and losses that proceed from every position that it explores. This bookkeeping along with some simple but clever math allows the AI to balances a trade off between exploring lots of possible different moves and exploiting moves that are performing well.\nWith a sufficient number of playouts this type of AI was able to play at a professional level on smaller 9x9 boards and play at a strong amateur level on full 19x19 boards. But these models were very far from"
+  },
+  {
+    "objectID": "posts/alpha-go/index.html#how-alphago-actually-works",
+    "href": "posts/alpha-go/index.html#how-alphago-actually-works",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "How AlphaGo Actually Works",
+    "text": "How AlphaGo Actually Works\nAlphaGo uses a version of MCTS. In AlphaGo, instead of performing a playout all the way till the game ends, it uses a model to predicted if a given position is good or bad and records this value in place of the result of the game. It also uses this model to chose the best moves to explore.\nThe model works by first taking the current position and recent history. Then this data is fed though 40 processing layers. These layers work together to process the board position using a technique reminiscent of how a visual cortex processes information. In each layer patterns are detected and a representation of those patterns is given as output. In this way each layer builds on the patterns of the previous layer. Initial layers might detect and process simples patters like two adjacent stone while later layers would process extremely complex arrangements of stones. After these 40 layers a bit more processing is done to produce two predictions: how good or bad the position is, and a list of the best possible moves to further explore.\n\n\n\nhttps://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0\n\n\nThis was the technique the allowed AI to finally beat the worlds best Go players."
+  },
+  {
+    "objectID": "posts/alpha-go/index.html#the-story",
+    "href": "posts/alpha-go/index.html#the-story",
+    "title": "The Go AI that Defeated Humanity",
+    "section": "",
+    "text": "In 2016 a team from Google DeepMind revealed AlphaGo, the most powerful Go AI ever created. Initially top Go players took it for granted they could be this new AI. Less than a year before the release of AlphaGo there were experts who though AI beating top Go players was at least a decade away if not completely impossible.\nTo prove the strength of AlphaGo, the team from DeepMind challenged a top Go player named Lee Sedol to a best of five match. Lee Sedol had been the number one raked Go player worldwide from 2007 to 2011 and remained a top level pro player until he retired in 2019.\nIt didn’t take long for Sedol to realise how strong AlphaGo really was. AlphaGo won the first three games. After losing the third game Sedol apologised for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol did manage to win game four but then lost the final round. Sedol’s loss completely stunned the Go community, who universally assumed Sedol would win easily.\n\n\n\nLee Sedol playing Against AlphaGo"
   }
 ]

@@ -9,7 +9,7 @@
 <meta name="author" content="Michael Eirikson">
 <meta name="dcterms.date" content="2026-01-15">
 
-<title>AlphaGo – AlphaGo_Blog</title>
+<title>The Go AI that Defeated Humanity – A “VERY GOOD” Data Science Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">AlphaGo_Blog</span>
+    <span class="navbar-title">A “VERY GOOD” Data Science Blog</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">AlphaGo</h1>
+      <h1 class="title">The Go AI that Defeated Humanity</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">AI</div>
                 <div class="quarto-category">ML</div>
@@ -158,8 +158,45 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="test" class="level2">
-<h2 class="anchored" data-anchor-id="test">TEST</h2>
+<section id="the-story" class="level2">
+<h2 class="anchored" data-anchor-id="the-story">The Story</h2>
+<p>In 2016 a team from Google DeepMind revealed AlphaGo, the most powerful Go AI ever created. Initially top Go players took it for granted they could be this new AI. Less than a year before the release of AlphaGo there were experts who though AI beating top Go players was at least a decade away if not completely impossible.</p>
+<p>To prove the strength of AlphaGo, the team from DeepMind challenged a top Go player named Lee Sedol to a best of five match. Lee Sedol had been the number one raked Go player worldwide from 2007 to 2011 and remained a top level pro player until he retired in 2019.</p>
+<p>It didn’t take long for Sedol to realise how strong AlphaGo really was. AlphaGo won the first three games. After losing the third game Sedol apologised for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol did manage to win game four but then lost the final round. Sedol’s loss completely stunned the Go community, who universally assumed Sedol would win easily.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sad_lee_sedol.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Lee Sedol playing Against AlphaGo</figcaption>
+</figure>
+</div>
+</section>
+<section id="what-is-go-anyways" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-go-anyways">What is Go Anyways?</h2>
+<p>Go is a game played between two players on a 19x19 grid. The players take turns placing one stone with the goal of claiming the most territory. The rules set is simple but lead to an extremely complex and intricate game.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="go-board.jpeg" class="img-fluid figure-img"></p>
+<figcaption>A typical go game close to the end</figcaption>
+</figure>
+</div>
+</section>
+<section id="before-alphago" class="level2">
+<h2 class="anchored" data-anchor-id="before-alphago">Before AlphaGo</h2>
+<p>Before AlphaGo the best Go AI’s were based on a technique called Monte Carlo Tree Search (MCTS).</p>
+<p>In MCTS on each turn the AI performs thousands of random playouts. In a playout the AI starts with the current position and randomly simulates the rest of the game. While doing these playouts the AI does some simple bookkeeping to track of the number of wins and losses that proceed from every position that it explores. This bookkeeping along with some simple but clever math allows the AI to balances a trade off between exploring lots of possible different moves and exploiting moves that are performing well.</p>
+<p>With a sufficient number of playouts this type of AI was able to play at a professional level on smaller 9x9 boards and play at a strong amateur level on full 19x19 boards. But these models were very far from</p>
+</section>
+<section id="how-alphago-actually-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-alphago-actually-works">How AlphaGo Actually Works</h2>
+<p>AlphaGo uses a version of MCTS. In AlphaGo, instead of performing a playout all the way till the game ends, it uses a model to predicted if a given position is good or bad and records this value in place of the result of the game. It also uses this model to chose the best moves to explore.</p>
+<p>The model works by first taking the current position and recent history. Then this data is fed though 40 processing layers. These layers work together to process the board position using a technique reminiscent of how a visual cortex processes information. In each layer patterns are detected and a representation of those patterns is given as output. In this way each layer builds on the patterns of the previous layer. Initial layers might detect and process simples patters like two adjacent stone while later layers would process extremely complex arrangements of stones. After these 40 layers a bit more processing is done to produce two predictions: how good or bad the position is, and a list of the best possible moves to further explore.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="alpha-go-cheat-sheet.jpeg" class="img-fluid figure-img"></p>
+<figcaption>https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0</figcaption>
+</figure>
+</div>
+<p>This was the technique the allowed AI to finally beat the worlds best Go players.</p>
 
 
 </section>
