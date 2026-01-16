@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -162,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="the-story">The Story</h2>
 <p>In 2016 a team from Google DeepMind revealed AlphaGo, the most powerful Go AI ever created. Initially top Go players took it for granted they could be this new AI. Less than a year before the release of AlphaGo there were experts who though AI beating top Go players was at least a decade away if not completely impossible.</p>
 <p>To prove the strength of AlphaGo, the team from DeepMind challenged a top Go player named Lee Sedol to a best of five match. Lee Sedol had been the number one raked Go player worldwide from 2007 to 2011 and remained a top level pro player until he retired in 2019.</p>
-<p>It didn’t take long for Sedol to realise how strong AlphaGo really was. AlphaGo won the first three games. After losing the third game Sedol apologised for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol did manage to win game four but then lost the final round. Sedol’s loss completely stunned the Go community, who universally assumed Sedol would win easily.</p>
+<p>It didn’t take long for Sedol to realise how strong AlphaGo really was. AlphaGo won the first three games. After losing the third game Sedol apologized for his losses and stated “I misjudged the capabilities of AlphaGo and felt powerless.” Sedol did manage to win game four but then lost the final round. Sedol’s loss completely stunned the Go community, who universally assumed Sedol would win easily.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="sad_lee_sedol.jpeg" class="img-fluid figure-img"></p>
@@ -172,7 +201,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-is-go-anyways" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-go-anyways">What is Go Anyways?</h2>
-<p>Go is a game played between two players on a 19x19 grid. The players take turns placing one stone with the goal of claiming the most territory. The rules set is simple but lead to an extremely complex and intricate game.</p>
+<p>Go is a game played between two players on a 19x19 grid. The players take turns placing one stone with the goal of claiming the most territory. The game ends when neither player wishes to make another move. The rules set is simple but lead to an extremely complex and intricate game. Games tend to take about 150-200 moves.</p>
+<p>A lot of the complexity of Go comes from the vast number of possible games that can be played. There are about <span class="math inline">\(2 \times 10^{170}\)</span> legal positions (that is a 2 followed by 170 zeros). For context this is roughly the number of particles in the visible universe squared. But that is just the number of legal positions, estimated for the total number of actual playable gamse games start around <span class="math inline">\(2 \times 10^{700}\)</span>! This is a difficult thing to calculate and different methods yield a wide range of results. The point is, the space of all possible games is massively large on a scale that is hard to even think about.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="go-board.jpeg" class="img-fluid figure-img"></p>
@@ -183,20 +213,35 @@ ul.task-list li input[type="checkbox"] {
 <section id="before-alphago" class="level2">
 <h2 class="anchored" data-anchor-id="before-alphago">Before AlphaGo</h2>
 <p>Before AlphaGo the best Go AI’s were based on a technique called Monte Carlo Tree Search (MCTS).</p>
-<p>In MCTS on each turn the AI performs thousands of random playouts. In a playout the AI starts with the current position and randomly simulates the rest of the game. While doing these playouts the AI does some simple bookkeeping to track of the number of wins and losses that proceed from every position that it explores. This bookkeeping along with some simple but clever math allows the AI to balances a trade off between exploring lots of possible different moves and exploiting moves that are performing well.</p>
-<p>With a sufficient number of playouts this type of AI was able to play at a professional level on smaller 9x9 boards and play at a strong amateur level on full 19x19 boards. But these models were very far from</p>
+<p>In MCTS on each turn the AI performs thousands of random playouts. In a playout the AI starts with the current position and randomly simulates the rest of the game. While doing these playouts the AI does some simple bookkeeping to track of the number of wins and losses that proceed from every position that it explores and also the number of time a position has been visited. This bookkeeping along with some simple but clever math allows the AI to balances a trade off between exploring lots of possible different moves and exploiting moves that are performing well.</p>
+<p>With a sufficient number of playouts this type of AI was able to play at a professional level on smaller 9x9 boards and play at a strong amateur level on full 19x19 boards. But these models were very far from beating top Go players on full boards.</p>
+<p>The main reason this method wasn’t able to surpass the worlds best Go players is because of the vast number of games that need to be searched. MCTS methods search through possible games randomly, they don’t have a mechanism that help them select better moves. Because of this inefficient search mechanism and the huge number of moves to explore, MCTS will never be able to reliably find the best possible moves to play.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="MCTS.jpeg" class="img-fluid figure-img"></p>
+<figcaption>The four steps of Monte Carlo Tree Seach</figcaption>
+</figure>
+</div>
 </section>
-<section id="how-alphago-actually-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-alphago-actually-works">How AlphaGo Actually Works</h2>
-<p>AlphaGo uses a version of MCTS. In AlphaGo, instead of performing a playout all the way till the game ends, it uses a model to predicted if a given position is good or bad and records this value in place of the result of the game. It also uses this model to chose the best moves to explore.</p>
-<p>The model works by first taking the current position and recent history. Then this data is fed though 40 processing layers. These layers work together to process the board position using a technique reminiscent of how a visual cortex processes information. In each layer patterns are detected and a representation of those patterns is given as output. In this way each layer builds on the patterns of the previous layer. Initial layers might detect and process simples patters like two adjacent stone while later layers would process extremely complex arrangements of stones. After these 40 layers a bit more processing is done to produce two predictions: how good or bad the position is, and a list of the best possible moves to further explore.</p>
+<section id="so-what-does-alphago-do" class="level2">
+<h2 class="anchored" data-anchor-id="so-what-does-alphago-do">So What does AlphaGo Do?</h2>
+<p>AlphaGo solves this problem by using something called a convolutional neural network (CNN) to evaluate how good a given position is for each player and make predictions about what the best possible moves are. More on the CNN later.</p>
+<p>So AlphaGo makes uses an adaptation of MTCS. The difference is that while the AI is performing playouts for the game it uses the CNN model to do two things. First instead of searching randomly it uses the model to predict good possible moves and simulates games uses those. Second, when it comes to a new position it hasn’t visited yet, instead of simulating all the way till the game ends. It just passes this new position into the CNN which predicts how good of a position it is. This prediction is then recorded in place of recording wins and losses. So AlphaGo is able to search much more efficiently, it doesn’t need to simulated a game all the way to the end and it chooses generally good moves to explore.</p>
+<p>Okay great, but how does the CNN predict good moves and evaluate how good the position is? Isn’t that really just the problem we’re trying to solve in the first place? Yes that’s true. We’ll get into how the CNN makes these prediction in a moment. But first, the reason we are still doing MCTS along with this CNN is to refine the prediction from the CNN. It is the difference between a player looking at one position and having some instinct about how good it is and what they should do versus looking many moves ahead along many paths that they have some intuition about. Thinking ahead in this way will always result in much stronger moves.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="alpha-go-cheat-sheet.jpeg" class="img-fluid figure-img"></p>
 <figcaption>https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0</figcaption>
 </figure>
 </div>
-<p>This was the technique the allowed AI to finally beat the worlds best Go players.</p>
+</section>
+<section id="the-convolutional-neural-network" class="level2">
+<h2 class="anchored" data-anchor-id="the-convolutional-neural-network">The Convolutional Neural Network</h2>
+<p>The CNN is made up of 40 processing layers. Each of these layers has hundreds of thousands of tunable parameters. It is the tuning of these parameters that will allow the CNN model to “learn”.</p>
+<p>To make predictions the model is given the current position and recent history. Then this data is fed though 40 processing layers. These layers work together to process the board position using a technique reminiscent of how a visual cortex processes information. In each layer patterns are detected and a representation of those patterns is given as output. In this way each layer builds on the patterns of the previous layer. Initial layers might detect and process simple patters like two adjacent stone while later layers would process extremely complex arrangements of stones. After these 40 layers a bit more processing is done to produce two predictions: how good or bad the position is, and a list of the best possible moves to further explore.</p>
+<p>Learning is accomplished by playing AlphaGo against itself and recording the moves and the outcome. Then through some clever math not covered here: the tunable parameters are changed in a small way that will cause moves that led to a win to be predicted more often and moves that led to a loss to be predicted less often. Also the CNNs prediction about how good the position is, is compared to the outcome of the game. These tunable parameters are also given a small change to make this prediction more accurate. Then by playing millions of games and making millions of small changes to these parameters the model slowly becomes better and better.</p>
+<p>The end result is a model that is much better at guiding MCTS then its normal random search, and is much better at giving prediction on how good a position is than randomly playing all they way to the end.</p>
+<p>This is how AlphaGo defeated the worlds best Go players.</p>
 
 
 </section>
