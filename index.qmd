@@ -1,5 +1,5 @@
 ---
-title: "A \"VERY GOOD\" Data Science Blog"
+title: "A VERY GOOD Data Science Blog"
 listing:
   contents: posts
   sort: "date desc"

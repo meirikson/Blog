@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "A \"VERY GOOD\" Data Science Blog"
+  title: "A VERY GOOD Data Science Blog"
   navbar:
     right:
       - about.qmd
